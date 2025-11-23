@@ -1,0 +1,67 @@
+export const trips = [
+  {
+    id: 1,
+    title: 'Roma',
+    date: '2025-05-12',
+    description: 'Weekend culturale con visite ai musei e monumenti storici.',
+    location: 'Italia',
+    image: 'https://picsum.photos/1600/800',
+  },
+  {
+    id: 2,
+    title: 'Parigi',
+    date: '2025-07-01',
+    description: 'Tour dei principali quartieri e degustazione di cibi locali.',
+    location: 'Francia',
+    image: 'https://picsum.photos/600/400',
+  },
+  {
+    id: 3,
+    title: 'Tokyo',
+    date: '2025-10-15',
+    description: 'Esplorazione della città, templi e cucina giapponese.',
+    location: 'Giappone',
+    image: 'https://picsum.photos/1200/800',
+  },
+  {
+    id: 4,
+    title: 'New York',
+    date: '2025-06-20',
+    description: 'Visita ai musei, passeggiate a Central Park e Broadway.',
+    location: 'USA',
+    image: 'https://picsum.photos/600/400',
+  },
+  {
+    id: 5,
+    title: 'Londra',
+    date: '2025-08-10',
+    description: 'Tour della città, Buckingham Palace e British Museum.',
+    location: 'Regno Unito',
+    image: 'https://picsum.photos/800/400',
+  },
+  {
+    id: 6,
+    title: 'Barcellona',
+    date: '2025-09-05',
+    description: 'Architettura di Gaudí, spiagge e tapas.',
+    location: 'Spagna',
+    image: 'https://picsum.photos/600/450',
+  },
+]
+
+export async function GET() {
+  return new Response(JSON.stringify(trips), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+export async function POST(req) {
+  const newTrip = await req.json() // leggi i dati inviati dal client
+  newTrip.id = trips.length + 1
+  trips.push(newTrip)
+
+  console.log('happening')
+
+  return new Response(JSON.stringify(newTrip), { status: 201 })
+}
