@@ -1,5 +1,7 @@
 'use server'
 
+import { redirect } from "next/navigation"
+
 export default async function createTrip(formData) {
   const trip = {
     title: formData.get('title'),
@@ -13,5 +15,5 @@ export default async function createTrip(formData) {
     body: JSON.stringify(trip),
   })
 
-  return { success: true, message: `Trip "${trip.title}" saved!` }
+  redirect('/trips')
 }

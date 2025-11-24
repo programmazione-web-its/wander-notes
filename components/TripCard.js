@@ -3,13 +3,14 @@ export default function TripCard({ trip }) {
   return (
     <div className='group bg-primary/10'>
       <div className='overflow-hidden aspect-square'>
-        <Image
+       {trip.image &&  
+       <Image
           src={trip.image}
           alt={trip.title}
           width={trip.image.width || 400}
           height={trip.image.height || 400}
           className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000'
-        />
+        />}
       </div>
       <div className='p-4'>
         <h2 className='my-4 text-2xl font-bold text-primary'>{trip.title}</h2>
