@@ -3,7 +3,7 @@ import TripCard from '@/components/TripCard'
 import Button from '@/components/Button'
 
 export default function Home() {
-  const recentTrips = trips
+  const recentTrips = trips.slice(0, 3)
 
   return (
     <main className=' min-h-screen w-full container'>
