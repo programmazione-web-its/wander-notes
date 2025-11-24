@@ -1,26 +1,27 @@
 'use client'
+import Link from "next/link"
 
 export default function Navbar() {
   return (
     <nav className='uppercase lg:flex items-center gap-6'>
-      <a
+      <Link
         className='font-semibold hover:text-primary transition-colors'
         href='/about'
       >
         About
-      </a>
-      <a
+      </Link>
+      <Link
         className='font-semibold hover:text-primary transition-colors'
-        href='/about'
+        href='/trips'
       >
         Trips
-      </a>
-      <a
+      </Link>
+      <Link
         className='font-semibold  hover:text-primary transition-colors'
-        href='/about'
+        href='/contact'
       >
         Contact
-      </a>
+      </Link>
     </nav>
   )
 }

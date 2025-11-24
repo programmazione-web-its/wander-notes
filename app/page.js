@@ -1,10 +1,13 @@
-import { trips } from './api/trips/route'
+
 import TripCard from '@/components/TripCard'
 import Button from '@/components/Button'
 
-export default function Home() {
-  const recentTrips = trips
-  .sort((a, b) => new Date(b.date) - new Date(a.date))
+export default async function Home() {
+
+  const res = await fetch('http://localhost:3000/api/trips')
+  const trips = await res.json()
+
+  const recentTrips = trips?.sort((a, b) => new Date(b.date) - new Date(a.date))
   .slice(0, 3);
 
   return (
