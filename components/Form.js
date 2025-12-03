@@ -1,41 +1,47 @@
 'use client'
 
 import { useFormStatus } from 'react-dom'
-
-import createTrip from '@/app/lib/actions'
+import { editTrip, createTrip } from '@/app/lib/actions'
 import Button from './Button'
 
-export function SubmitButton() {
+export function SubmitButton({ title }) {
   const { pending } = useFormStatus()
-
   return (
     <Button type='submit' className='my-4'>
-      {pending ? 'Please wait...' : 'Add trip'}
+      {pending ? 'Please wait...' : title}
     </Button>
   )
 }
 
-export default function Form() {
+export default function Form({ fields = null }) {
   return (
     <div className='bg-primary/10 p-4 form-wrapper w-lg mx-auto'>
-      <form action={createTrip}>
-        <div className=''>
+      <form action={fields ? editTrip : createTrip}>
+        <div>
           <label htmlFor='name'>Title</label>
-          <input name='title' type='text' />
+          <input name='title' type='text' defaultValue={fields?.title} />
         </div>
-        <div className=''>
+
+        <div>
           <label htmlFor='date'>Date</label>
-          <input name='date' type='date' />
+          <input name='date' type='date' defaultValue={fields?.date} />
         </div>
-        <div className=''>
+
+        <div>
           <label htmlFor='location'>Location</label>
-          <input name='location' type='text' />
+          <input name='location' type='text' defaultValue={fields?.location} />
         </div>
-        <div className=''>
+
+        <div>
           <label htmlFor='description'>Description</label>
-          <textarea name='description' rows='10' />
+          <textarea
+            name='description'
+            rows='10'
+            defaultValue={fields?.description}
+          />
         </div>
-        <SubmitButton />
+        {fields && <input type='hidden' name='id' value={fields.id} />}
+        <SubmitButton title={fields ? 'Save changes' : 'Add trip'} />
       </form>
     </div>
   )

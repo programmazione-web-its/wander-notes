@@ -1,14 +1,13 @@
-
 import TripCard from '@/components/TripCard'
 import Button from '@/components/Button'
 
 export default async function Home() {
-
   const res = await fetch('http://localhost:3000/api/trips')
   const trips = await res.json()
 
-  const recentTrips = trips?.sort((a, b) => new Date(b.date) - new Date(a.date))
-  .slice(0, 3);
+  const recentTrips = trips
+    ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3)
 
   return (
     <main className=' min-h-screen w-full container'>
@@ -21,7 +20,9 @@ export default async function Home() {
         </div>
       )}
       <div className='text-center my-8'>
-        <Button>Discover all</Button>
+        <Button type='link' to='trips'>
+          Discover all
+        </Button>
       </div>
     </main>
   )
